@@ -2,11 +2,13 @@ body {
     background-image: url("/Users/stevenmichaud/generalassembly/unit_two/homework/express_pokedex/public/pokemon red.png");
     justify-content: center;
     text-align: center;
+    background-color: darkred;
+    font-family: monospace ;
 
 }
 
 .btn {
-    background-color: blue ;
+    background-color: navy ;
     color: yellow;
     
 }
