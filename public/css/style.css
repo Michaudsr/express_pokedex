@@ -1,10 +1,11 @@
 
 body {
     background: url('../img/Charizard.png') repeat;
-    background-size: 400px;
+    background-size: 500px;
     background-color: rgb(187 28 34);
     justify-content: center;
     text-align: center;
+    margin: auto 0;
     
     
 
@@ -19,8 +20,8 @@ body {
 
 h2 {
     color: rgb(254 203 4);
-    margin: auto 0;
-    border-ba
+    text-decoration: underline;
+    
    
     
     
@@ -42,6 +43,10 @@ h1 {
 }
 
 h3 {
-    color: rgb(51 103 176);
+    color: white;
     font: border;
+}
+
+h4 {
+   
 }

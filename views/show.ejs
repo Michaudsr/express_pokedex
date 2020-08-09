@@ -2,4 +2,7 @@
 <h2><%= pokedata.name%></h2>
 <h3>Height:<%= pokedata.weight%></h3>
 <h3>Weight:<%= pokedata.height%></h3>
-<h3>Ability:<%= pokedata.abilities[0].ability.name%></h3>
+<h3>Abilities: <% pokedata.moves.forEach((a)=> { %></h3>
+     <h4 id='moves'><%= a.move.name %>,</h4>
+    <% }) %> 
+ 
