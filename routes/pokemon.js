@@ -6,7 +6,7 @@ const router = express.Router();
 const db = require('../models');
 const { response } = require('express');
 const axios = require('axios');
-const methodOverride = require('method-override');
+
 
 
 // GET /pokemon - return a page with favorited Pokemon
@@ -15,18 +15,22 @@ const methodOverride = require('method-override');
       const pokeFind = await db.pokemon.findAll(); 
       res.render("favorites", {pokemon: pokeFind})
     } catch (err){
-      res.send(error, "Error");
+      res.send(err, "Error");
     }
   });
  
-  
-  // TODO: Get all records from the DB and render to view
-  // res.send('Render a page of favorites here');
-// });
+// router.get('/', (req, res) => {
+//   db.pokemon.findall().then(pokeFind =>{
+//     res.render("favorites", {pokemon: pokeFind})
+//   }).catch(err => {
+//     res.send(err)
+//   })
 
-// POST /pokemon - receive the name of a pokemon and add it to the database
+// })
+  
+
 router.post('/', async (req, res) => {
-  // TODO: Get form data and add a new record to DB
+  
   try {
     await db.pokemon.findOrCreate({
       where: {
@@ -57,15 +61,17 @@ router.get('/:name', async (req,res) => {
 
 router.delete('/', async (req, res) => {
   try {
+    console.log(req.body.name);
     await db.pokemon.destroy({
       where: {
         name: req.body.name
       },
     })
-    res.redirect('/pokemon')
+    res.redirect('/pokemon');
 
   } catch(err){
     console.log('Error')
+    res.send("error");
   }
 });
 

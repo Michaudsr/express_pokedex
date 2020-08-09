@@ -1,14 +1,27 @@
+
 body {
-    background-image: url("/Users/stevenmichaud/generalassembly/unit_two/homework/express_pokedex/public/pokemon red.png");
+    background-color: rgb(128, 6, 6);
+    background: url('../img/pokemonred.png') repeat;
     justify-content: center;
     text-align: center;
-    background-color: darkred;
-    font-family: monospace ;
+    
 
 }
 
 .btn {
-    background-color: navy ;
-    color: yellow;
+    background-color: rgb(51 103 176) ;
+    color: rgb(254 203 4);
     
+}
+
+h2 {
+    color: rgb(254 203 4);
+}
+h1 {
+    color: black;
+    background-image: url('/Users/stevenmichaud/generalassembly/unit_two/homework/express_pokedex/public/img/Pokemon-Logo.png');
+}
+
+.logo {
+    height: 250px;
 }

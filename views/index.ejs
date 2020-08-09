@@ -1,5 +1,6 @@
 <div class="container">
-  <h1 class="text-center">The Original 151 Pokemon</h1>
+  <!-- <img src="img/Pokemon-Logo.png" class='logo' alt="pokemon_logo"> -->
+
   <p class="text-center">
     <a href="/pokemon">Favorites</a>
   </p>
@@ -9,7 +10,6 @@
       <h2><%= pokemon.name %></h2>
       <form method="POST" action="/pokemon">
         <input hidden type="text" name="name" value="<%= pokemon.name %>">
-        <!-- <a class="waves-effect waves-light btn-large" type="submit">Add to Favorite Pokemon</a> -->
         <button class="btn btn-primary" type="submit">Add to Favorite Pokemon</button>
       </form>
     </div>
