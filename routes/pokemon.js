@@ -71,7 +71,7 @@ router.delete('/', async (req, res) => {
 
   } catch(err){
     console.log('Error')
-    res.send("error");
+    res.send("err");
   }
 });
 

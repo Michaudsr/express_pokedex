@@ -1,9 +1,11 @@
 
 body {
-    background-color: rgb(128, 6, 6);
-    background: url('../img/pokemonred.png') repeat;
+    background: url('../img/Charizard.png') repeat;
+    background-size: 400px;
+    background-color: rgb(187 28 34);
     justify-content: center;
     text-align: center;
+    
     
 
 }
@@ -11,11 +13,17 @@ body {
 .btn {
     background-color: rgb(51 103 176) ;
     color: rgb(254 203 4);
+    border-radius: 100px;
     
 }
 
 h2 {
     color: rgb(254 203 4);
+    margin: auto 0;
+    border-ba
+   
+    
+    
 }
 h1 {
     color: black;
@@ -24,4 +32,16 @@ h1 {
 
 .logo {
     height: 250px;
+}
+
+#sprites {
+    border: solid rgb(254 203 4);
+    background: rgb(51 103 176) ;
+    margin: 100px;
+    height: 150px;
+}
+
+h3 {
+    color: rgb(51 103 176);
+    font: border;
 }
