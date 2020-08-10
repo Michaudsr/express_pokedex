@@ -40,7 +40,7 @@ router.post('/', async (req, res) => {
     res.redirect('/pokemon')
 
   } catch (err){
-    console.log('Error', error)
+    console.log('Error', err)
   }
 });
 
@@ -49,13 +49,13 @@ router.post('/', async (req, res) => {
 router.get('/:name', async (req,res) => {
  try {
     if (req.params && req.params.name){
-      const pokemonURL = `https://pokeapi.co/api/v2/pokemon/${req.params.name.toLowerCase()}`;
-      const result = await axios.get(pokemonURL);
+      let pokemonURL = `https://pokeapi.co/api/v2/pokemon/${req.params.name.toLowerCase()}`;
+      let result = await axios.get(pokemonURL);
       let pokemonDetails = result.data;
       res.render("show", {pokedata: pokemonDetails})
     }
   } catch(err) {
-    res.send("error");
+    res.send("error", err);
   }
 })
 

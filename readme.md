@@ -150,3 +150,95 @@ Or, specify a limit of 151 to see all 151 pokemon!
 ## Licensing
 1. All content is licensed under a CC-BY-NC-SA 4.0 license.
 2. All software code is licensed under GNU GPLv3. For commercial use or alternative licensing, please contact legal@ga.co.
+
+
+## PokeDex Readme
+
+### Index route
+The first thing I did was build my routes, I started with the Index.ejs route to the favoirtes.ejs. Because i wanted to get all the pokemons information, in this case just being the name I started with router.get. Then i used a async function, passing in req, res. Within that i used a try statement which allows you to test the code you pass into it. I created a variable pokeFind which was defined by the database, the key pokemon and a function findAll(), so that i could get data from all the pokemon. After defining the variable i rendered them to my favorites database using the key pokemon and the value i created pokefind. I then used a catch to catch any errors. I also did this same route without using asnyc which i commented out.
+```
+  router.get('/', async (req, res) => {
+    try{
+      const pokeFind = await db.pokemon.findAll(); 
+      res.render("favorites", {pokemon: pokeFind})
+    } catch (err){
+      res.send(err, "Error");
+    }
+  });
+  ```
+
+### Post Favorites route
+
+I created a router.post to post the favorited pokemon to my favorites page, i also did this using a asnyc function. In the try statement i used the database with the key pokemon and the findOrCreate function and within there i defined where i would find the name of the object using req.body.name. I would then redirect it to the favorites page or the /pokemon page. I also used a catch to catch and errors on this as well.
+```
+router.post('/', async (req, res) => {
+  
+  try {
+    await db.pokemon.findOrCreate({
+      where: {
+        name: req.body.name
+      },
+    })
+    res.redirect('/pokemon')
+
+  } catch (err){
+    console.log('Error', err)
+  }
+});
+```
+
+### Show details route
+
+For this route i used the asynce function and passed in /:name
+to bring me to the show.ejs of that particular pokemon. I used a try statement and within the try statement used a if statement that states if the req.params and the req.params.name to render them to the show.ejs. I created three variable to accomplish that one of the the pokemonapi url, a results variable that uses the axios server to get the url and a pokeDetails that is defined by the result.data.
+```
+router.get('/:name', async (req,res) => {
+ try {
+    if (req.params && req.params.name){
+      let pokemonURL = `https://pokeapi.co/api/v2/pokemon/${req.params.name.toLowerCase()}`;
+      let result = await axios.get(pokemonURL);
+      let pokemonDetails = result.data;
+      res.render("show", {pokedata: pokemonDetails})
+    }
+  } catch(err) {
+    res.send("error", err);
+  }
+})
+```
+
+### Delete from show.ejs
+
+I created a router.delete using a asnyc function, which in a try statement states the database with the pokemon object that needs to destroy. Within that object i defined the name by the req.body.name, and then will be redirected back to the favorites page or the /pokemon page. I installed method-overrid for this destroy function which is defined in my Index.js. I also created a delete button in the favorites.ejs with a method of POST but a action of DELETE.
+```
+router.delete('/', async (req, res) => {
+  try {
+    console.log(req.body.name);
+    await db.pokemon.destroy({
+      where: {
+        name: req.body.name
+      },
+    })
+    res.redirect('/pokemon');
+
+  } catch(err){
+    console.log('Error')
+    res.send("err");
+  }
+});
+```
+```
+<h2>Favorite Pokemon</h2>
+<% pokemon.forEach(function(pokemon) { %>
+    <div class="well">
+      <h2>
+          <a href="/pokemon/<%= pokemon.name %>">
+            <%= pokemon.name %>
+        </a>
+    </h2>
+      <form method="POST" action="/pokemon?_method=DELETE">
+        <input hidden type="text" name="name" value="<%= pokemon.name %>">
+        <button class="btn btn-primary" type="submit">Delete Pokemon</button>
+      </form>
+    </div>
+  <% }); %>
+```
